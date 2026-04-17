@@ -6,10 +6,8 @@ import Head from 'next/head';
 export default function Home() {
   const [display, setDisplay] = useState("");
 
-  // --- Math Logic ---
   const calculate = (expression: any) => {
     try {
-      // Use Function constructor instead of eval for better React safety
       return String(new Function(`return ${expression}`)());
     } catch {
       return "Error";
@@ -38,7 +36,6 @@ export default function Home() {
     return String(res);
   };
 
-  // --- Click Handler (Event Delegation) ---
   const handleButtonClick = (e: any) => {
     if (e.target.tagName !== 'BUTTON') return;
     const value = e.target.innerText;
@@ -56,7 +53,6 @@ export default function Home() {
     }
   };
 
-  // --- Styles ---
   const baseButton = "w-full h-full flex items-center justify-center rounded-[12px] text-[2rem] font-bold transition-all duration-100 active:translate-y-[4px] shadow-[0_6px_0_#1A161A] active:shadow-[0_2px_0_#1A161A]";
   const numBtn = `${baseButton} bg-[#3F373E] text-[#BDBDBD]`;
   const opBtn = `${baseButton} bg-[#373E4D] text-[#8EACCD]`;
@@ -69,14 +65,12 @@ export default function Home() {
         <title>Kalkulator</title>
       </Head>
 
-      {/* Screen Area - Value is now linked to React State */}
       <textarea
         readOnly
         value={display}
         className="w-full h-[20vh] bg-[#1A161A] text-[#E0E0E0] text-[8rem] text-right font-['Digital'] p-5 rounded-[10px] shadow-[inset_0_4px_10px_rgba(0,0,0,0.5)] outline-none resize-none mb-[10px] overflow-hidden"
       />
 
-      {/* Buttons Area - Using one onClick for the whole container */}
       <div
         onClick={handleButtonClick}
         className="flex w-full h-[75vh] gap-[10px] flex-grow"
